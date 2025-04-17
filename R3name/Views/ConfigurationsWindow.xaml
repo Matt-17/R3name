@@ -1,0 +1,40 @@
+﻿<Window x:Class="R3name.Views.ConfigurationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Height="450" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical">
+            <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <Button Content="New" Command="{Binding NewConfigCommand}" Style="{StaticResource ActionButtonStyle}"
+                    Margin="2" />
+            <Button Content="Load" Command="{Binding LoadCommand}" Style="{StaticResource ActionButtonStyle}"
+                    Margin="2" />
+            <Button Content="Save" Command="{Binding SaveCommand}" Style="{StaticResource ActionButtonStyle}"
+                    Margin="2" />
+            <Button Content="Duplicate" Command="{Binding DuplicateCommand}" Style="{StaticResource ActionButtonStyle}"
+                    Margin="2" />
+            <Button Content="Delete" Command="{Binding DeleteCommand}" Style="{StaticResource ActionButtonStyle}"
+                    Margin="2" />
+            <Button Content="Import" Command="{Binding ImportCommand}" Style="{StaticResource ActionButtonStyle}"
+                    Margin="2" />
+            <Button Content="Export" Command="{Binding ExportCommand}" Style="{StaticResource ActionButtonStyle}"
+                    Margin="2" />
+        </StackPanel>
+
+        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding FilteredConfigs}"
+                 SelectedItem="{Binding SelectedConfig}" />
+    </Grid>
+</Window>

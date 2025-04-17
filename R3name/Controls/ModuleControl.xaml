@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="R3name.Controls.ModuleControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:R3name.Controls"
+             xmlns:converters="clr-namespace:R3name.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="200">
+    <local:ClippedBorder CornerRadius="4" Margin="4">
+        <StackPanel>
+            <Border x:Name="BORDER_Title" Background="Silver" Padding="4">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Height="20" Padding="0,5" VerticalAlignment="Center" Cursor="Hand" Background="Transparent" Margin="0,0,4,0" PreviewMouseMove="DragIconMouseMove" PreviewMouseLeftButtonDown="DragIconMouseDown" PreviewMouseLeftButtonUp="DragIconMouseUp">
+                        <Path Width="20" Height="10" SnapsToDevicePixels="True" Stroke="#66FFFFFF" StrokeThickness="2" Data="M1 1 L19 1 M1 5 L19 5 M1 9 L19 9" />
+                    </Border>
+                    <TextBlock Grid.Column="1" Text="{Binding Title}" FontSize="14" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center" />
+                    <Button Grid.Column="2" Width="22" Height="22" BorderThickness="0" Style="{StaticResource HeaderButtonStyle}" VerticalAlignment="Center" Click="ShowContextMenuClick">
+                        <Button.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Activate" Command="{Binding ActivateCommand}" />
+                                <MenuItem Header="Deactivate" Command="{Binding DeactivateCommand}" />
+                                <MenuItem Header="Reset" Command="{Binding ResetCommand}" />
+                                <MenuItem Header="Duplicate" Command="{Binding DuplicateCommand}" />
+                                <Separator />
+                                <MenuItem Header="Remove" Command="{Binding RemoveCommand}" />
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                        <Viewbox>
+                            <Path Data="M0,0L32,0 16,19.745z" Margin="10" Stretch="Uniform" Fill="White" />
+                        </Viewbox>
+                    </Button>
+                </Grid>
+            </Border>
+            <Border x:Name="BORDER_Modificator" Background="Silver" Opacity="{Binding IsDeactivated, Converter={converters:OpacityConverter}}">
+                <local:PropertyPanel Padding="4,2,4,6" Module="{Binding Module}" IsEnabled="{Binding IsDeactivated, Converter={converters:Invert}}" />
+            </Border>
+        </StackPanel>
+    </local:ClippedBorder>
+</UserControl>
