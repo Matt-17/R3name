@@ -1,0 +1,57 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Fragment>
+
+		<StandardDirectory Id="ProgramMenuFolder">
+			<Directory Id="ApplicationProgramsFolder" Name="!(bind.Property.Manufacturer)">
+				<Component Id="StartMenuShortcut" Guid="F8E4A26B-B149-4EBF-8175-1E54A44E8A5F">
+					<Shortcut
+					  Id="AppStartMenuShortcut"
+					  Name="R3name"
+					  Description="R3name file tool"
+					  Target="[INSTALLFOLDER]r3name.exe"
+					  WorkingDirectory="INSTALLFOLDER"
+					  Icon="R3nameIcon"
+					  IconIndex="0" />
+					<RemoveFolder Id="RemoveStartMenuFolder" On="uninstall" />
+					<RegistryValue Root="HKCU" Key="Software\R3name" Name="startmenu_installed" Type="integer" Value="1" KeyPath="yes" />
+				</Component>
+			</Directory>
+		</StandardDirectory>
+
+		<StandardDirectory Id="DesktopFolder">
+			<Component Id="DesktopShortcut" Guid="0134E16E-FA2B-41F7-800F-1E3A7CFB35D2">
+				<Shortcut
+				  Id="AppDesktopShortcut"
+				  Name="R3name"
+				  Description="R3name file tool"
+				  Target="[INSTALLFOLDER]r3name.exe"
+				  WorkingDirectory="INSTALLFOLDER"
+				  Icon="R3nameIcon"
+				  IconIndex="0" />
+				<RemoveFolder Id="RemoveDesktopFolder" On="uninstall" />
+				<RegistryValue Root="HKCU" Key="Software\R3name" Name="desktop_installed" Type="integer" Value="1" KeyPath="yes" />
+			</Component>
+		</StandardDirectory>
+
+		<Component Id="DirectoryContextMenu" Guid="E2460F28-813D-4CF0-90A1-0F7C2A9E1D11">
+			<!-- Kontextmenü bei Ordner-Rechtsklick -->
+			<RegistryKey Root="HKCR" Key="Directory\shell\R3name">
+				<RegistryValue Type="string" Value="!(loc.ContextMenuText)" />
+				<RegistryValue Name="Icon" Type="string" Value="[INSTALLFOLDER]r3name.exe" />
+				<RegistryKey Key="command">
+					<RegistryValue Type="string" Value="&quot;[INSTALLFOLDER]r3name.exe&quot; &quot;%1&quot;" />
+				</RegistryKey>
+			</RegistryKey>
+
+			<!-- Kontextmenü bei Rechtsklick in leeren Bereich -->
+			<RegistryKey Root="HKCR" Key="Directory\Background\shell\R3name">
+				<RegistryValue Type="string" Value="!(loc.ContextMenuText)" />
+				<RegistryValue Name="Icon" Type="string" Value="[INSTALLFOLDER]r3name.exe" />
+				<RegistryKey Key="command">
+					<RegistryValue Type="string" Value="&quot;[INSTALLFOLDER]r3name.exe&quot; &quot;%V&quot;" />
+				</RegistryKey>
+			</RegistryKey>
+		</Component>
+
+	</Fragment>
+</Wix>

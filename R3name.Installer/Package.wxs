@@ -1,0 +1,19 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Package Id="Code_iX.R3name" Name="R3name" Manufacturer="Code-iX" Version="0.0.23" UpgradeCode="8BDE43F3-285B-4429-9699-E509AD2A6519">
+		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+
+		<MediaTemplate EmbedCab="yes" />
+
+		<Icon Id="R3nameIcon" SourceFile="r3name.ico" />
+		<Property Id="ARPPRODUCTICON" Value="R3nameIcon" />
+		<Feature Id="App">
+			<ComponentGroupRef Id="AppComponents" />
+			<ComponentRef Id="StartMenuShortcut" />
+			<ComponentRef Id="DesktopShortcut" />
+		</Feature>
+		<Feature Id="ExplorerContextMenu" Title="Explorer-Kontextmenü" Display="expand" Level="1" Description="Fügt R3name dem Rechtsklick-Menü für Ordner hinzu.">
+			<ComponentRef Id="DirectoryContextMenu" />
+		</Feature>
+
+	</Package>
+</Wix>

@@ -1,0 +1,11 @@
+﻿<Project Sdk="WixToolset.Sdk/6.0.0">
+  <ItemGroup>
+    <Content Include="r3name.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\R3name\R3name.csproj" />
+  </ItemGroup>
+  <PropertyGroup>
+    <AppVersion Condition="'$(AppVersion)' == ''">0.0.1</AppVersion>
+  </PropertyGroup>
+</Project>

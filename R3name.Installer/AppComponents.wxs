@@ -1,0 +1,15 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Fragment>
+		<ComponentGroup Id="AppComponents">
+			<Component Id="AppFiles" Guid="1AEF5C84-BD9B-404F-9440-0123FA1DD2A9" Directory="INSTALLFOLDER">
+				<File Source="R3name.exe" />
+				<File Source="R3name.dll" />
+				<File Source="R3name.dll.config" />
+				<File Source="R3name.runtimeconfig.json" />
+				<File Source="Microsoft.WindowsAPICodePack.dll" />
+				<File Source="Microsoft.WindowsAPICodePack.Shell.dll" />
+				<File Source="YamlDotNet.dll" />
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
